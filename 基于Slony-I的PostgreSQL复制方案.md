@@ -9,7 +9,7 @@
 
 ## Slony实现原理
 
-###内部概念
+### 内部概念  
 
 命名                     |功能   
 ------------------------|----------------------
@@ -21,7 +21,8 @@ slon Daemon             |每个node上都需要启动一个slon进程，�
 slonik Configration Processor	|通过执行slonik命令来更新cluster配置信息，如：增删节点、通讯路径跟新、订阅者更改  
 Slony-I Path Communications	|通过提供各节点的连接选项，例如 conninfo='dbname=xxx user=repluser host=replpass port=5432'，来允许节点间相互访问并执行必要命令  
 
-###基础配置
+### 基础配置  
+
 * 分为3个步骤：
 
 1. 启动slon进程；
