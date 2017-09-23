@@ -8,16 +8,18 @@
 注：PG 10已经完全可以替代Slony。
 
 ## Slony实现原理
+
 ###内部概念
-命名              |功能
------------------|----------
-Cluster          |参与一个database复制的所有PG实例构成一个集群，比如1主1备，1主2备，变量定义：cluster name = xxx
-Node             |参与复制的每个PG实例分别代表一个节点，例如：1主1备，可定义为：主：node 1，备：node 2
-Replication Set	|复制集中可以定义database中需要进行复制的tables和sequences，同一个database复制中，可以定义多个复制集，例如：相同schema下的tables可以定义为一个复制集，或者tables和sequences分别定义为两个复制集
-Origin, Providers and Subscribers |复制有两种角色，一端定义为复制源，也就是数据生产者，另一端接收同步过来的数据，作为数据更新的订阅者；在Slony-I中只允许定义一个复制源，而且只能作为生产者(可以理解为单向复制)；Slony-I也支持级联复制，例如：A -> B -> C
-slon Daemon	   |每个node上都需要启动一个slon进程，有两个作用，一是用来监听cluser中的配置变更，如：增减节点、复制集调整，另一个是监听表中的数据变更并将其同步到订阅者并完成更新操作
-slonik Configration Processor	|通过执行slonik命令来更新cluster配置信息，如：增删节点、通讯路径跟新、订阅者更改
-Slony-I Path Communications	|通过提供各节点的连接选项，例如 conninfo='dbname=xxx user=repluser host=replpass port=5432'，来允许节点间相互访问并执行必要命令
+命名                     |功能   
+------------------------|----------------------
+Cluster                 |参与一个database复制的所有PG实例构成一个集群，比如1主1备，1主2备，变量定义：cluster name = xxx  
+Node                    |参与复制的每个PG实例分别代表一个节点，例如：1主1备，可定义为：主：node 1，备：node 2  
+Replication Set         |复制集中可以定义database中需要进行复制的tables和sequences，同一个database复制中，可以定义多个复制集，例如：相同schema下的tables可以定义为一个复制集，或者tables和sequences分别定义为两个复制集 
+Origin, Providers and Subscribers |复制有两种角色，一端定义为复制源，也就是数据生产者，另一端接收同步过来的数据，作为数据更新的订阅者；在Slony-I中只允许定义一个复制源，而且只能作为生产者(可以理解为单向复制)；Slony-I也支持级联复制，例如：A -> B -> C  
+slon Daemon             |每个node上都需要启动一个slon进程，有两个作用，一是用来监听cluser中的配置变更，如：增减节点、复制集调整，另一个是监听表中的数据变更并将其同步到订阅者并完成更新操作   
+slonik Configration Processor	|通过执行slonik命令来更新cluster配置信息，如：增删节点、通讯路径跟新、订阅者更改  
+Slony-I Path Communications	|通过提供各节点的连接选项，例如 conninfo='dbname=xxx user=repluser host=replpass port=5432'，来允许节点间相互访问并执行必要命令  
+
 ###基础配置
 * 分为3个步骤：
 
