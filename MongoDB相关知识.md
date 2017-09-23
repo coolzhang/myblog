@@ -1,7 +1,7 @@
 ## MongoDB副本集安装注意点
 
 1. 创建启动用户mongo
-2. 关闭内核参数transparent_hugepage
+2. 禁用内核参数transparent_hugepage
 3. 关闭NUMA
 4. 生成认证文件，权限400（openssl rand -base64 756 > key4rs）
 5. 启动选项(从3.2开始默认引擎为WiredTiger)
@@ -103,7 +103,7 @@ repset:PRIMARY> db.runCommand( { serverStatus:1 } )  # 类似show global status
 ### 1. 传统方式滚动式升级(2.4->2.6->3.0->3.2)
 
 #### 1.1. ReplSet从2.4升级到2.6
-方法：逐一升级从库，最后升级主库，通过将2.4的mongod二进制文件替换为2.6即可完成升级。
+方法：`逐一升级从库，最后升级主库，通过将2.4的mongod二进制文件替换为2.6即可完成升级。`
 
 ***步骤如下：***
 
@@ -123,11 +123,11 @@ repset:PRIMARY> rs.stepDown(300)            # 先将主库降级为从库，300�
 
 #### 1.2. ReplSet从2.6降级回2.4
 
-方法：将2.6版本的mongod文件替换回2.4版本即可完成降级。
+方法：`将2.6版本的mongod文件替换回2.4版本即可完成降级。`
 
 ### 2. 通过mongosync同步数据跨版本升级
 
-***操作步骤如下：***
+***步骤如下：***
 
 ```
 1> 搭建新版本副本集集群，新实例已WT引擎启动；
