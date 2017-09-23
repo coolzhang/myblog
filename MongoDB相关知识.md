@@ -46,8 +46,8 @@ rs0:PRIMARY > rs.status() | rs.conf             # 查看集群状态或配�
 shell> show databases
 shell> use test
 shell> show tables
-注：常用SQL语句对应表：<https://docs.mongodb.com/v2.4/reference/sql-comparison/>
 ```
+***注：常用SQL语句对应表：*** <https://docs.mongodb.com/v2.4/reference/sql-comparison/>
 
 ### 2. 创建用户
 
