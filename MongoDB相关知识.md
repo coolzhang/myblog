@@ -32,8 +32,8 @@ shell> mongo 127.0.0.1:27017/admin -uroot -pxx  # 连接任意一个节点
           ]
     }
 )
-rs0:PRIMARY > rs.addArb("10.1.1.250:27017")  # 添加仲裁(Arbiter)节点，不存储数据只参加选举投票
-rs0:PRIMARY > rs.status() | rs.conf          # 查看集群状态或配置
+rs0:PRIMARY > rs.addArb("10.1.1.250:27017")     # 添加仲裁(Arbiter)节点，不存储数据只参加选举投票
+rs0:PRIMARY > rs.status() | rs.conf             # 查看集群状态或配置
 ```
 ***注：线上3.0版本副本集架构***
 ![ReplSet](https://docs.mongodb.com/manual/_images/replica-set-primary-with-secondary-and-arbiter.bakedsvg.svg)
@@ -100,9 +100,9 @@ repset:PRIMARY> db.runCommand( { serverStatus:1 } )  # 类似show global status
 
 ## MongoDB升降级操作
 
-###1. 传统方式滚动式升级(2.4->2.6->3.0->3.2)
+### 1. 传统方式滚动式升级(2.4->2.6->3.0->3.2)
 
-####1.1. ReplSet从2.4升级到2.6
+#### 1.1. ReplSet从2.4升级到2.6
 方法：逐一升级从库，最后升级主库，通过将2.4的mongod二进制文件替换为2.6即可完成升级。
 
 ***步骤如下：***
