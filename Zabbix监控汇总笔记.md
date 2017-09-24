@@ -1,6 +1,6 @@
 ## Zabbix小知识
 
-### 监控项（`Item`）的常用类型有如下几种
+### 监控项(`Item`)的常用类型有如下几种
 
 * **zabbix agent** - 被动类型，由server端发起获取数据请求，agent端才响应收集数据；
 * **zabbix agent (active)** - 主动类型，agent端收到server端模板定义的Item项后，定期将收集的数据主动发给server端；
@@ -17,7 +17,7 @@
 
 * **Mikoomi Templates** - MongoDB监控模板，通过模板【Mikoomi MongoDB Template】中的Item【Miscellaneous: Data Collector】（类型为External check，其它监控项类型为zabbix trapper），由server端定期触发收集数据；
 
-* **Template Redis 2** - Redis监控模板，通过操作系统的crontab每分钟调用zbx_redis_stats.py脚本收集数据（类型为zabbix trapper）
+* **Template Redis 2** - Redis监控模板，通过操作系统的crontab每分钟调用zbx_redis_stats.py脚本收集数据（类型为zabbix trapper）***注：线上并未采用此模板，而是自己定义模板，采用shell脚本获取数据。***
 
 ### UserParameter定义
 
