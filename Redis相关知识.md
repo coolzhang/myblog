@@ -1,6 +1,14 @@
 ***注：线上版本2.8*** 
 
-## Redis
+## Redis介绍
+
+Redis是一款开源的内存型数据结构存储，可以作为数据库、缓存以及消息服务器。具有以下特点：
+
+1. 支持丰富的数据结构（strings、hashes、lists、sets、sorted sets、bitmaps、hyperloglogs、geospatial indexes）；
+2. 支持LUA脚本、LRU内存淘汰策略、事务操作、Pub/Sub；
+3. 支持数据持久化，一种是RDB镜像，另一种是AOF；
+4. 支持主从复制，通过Sentinel来实现故障切换；
+5. 3.0后的Redis Cluster支持数据水平扩展。
 
 ### 持久化
 1. RDB持久化是将某一时间点上的数据库状态（数据库中的键值对）保存到一个RDB文件中，该文件是一个经过压缩的二进制文件；既可以手动执行SAVE命令，也可以通过配置选项（e.g: save 900 1）定期执行，SLAVEOF命令也会触发主节点执行BGSAVE命令。
