@@ -6,7 +6,7 @@ MongoDB是一款开源的文档型数据库，属于NoSQL范畴，但其又具�
 2. 自由的schema定义，有利于业务功能快速迭代更新；
 3. 支持丰富的类关系型的读写语句，同时还支持数据聚合操作，以及全文索引和地理位置索引；
 4. 高可用副本集功能支持自动故障切换与多节点数据冗余；
-5. 自带Sharded Cluster方案支持水平扩展；
+5. 自带Sharded Cluster方案支持水平扩展，实现了自动化的动态扩容和负载均衡；
 6. 跟MySQL一样MongoDB也支持多引擎（e.g.: MMAPv1、WiredTiger、In-Memory）。
 
 ## MongoDB副本集安装注意点
