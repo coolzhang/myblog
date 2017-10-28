@@ -21,6 +21,10 @@ Squirrel通过配置不同的路由策略支持读写分离，读的负载均衡
 
 Squirrel客户端如果需要支持多种语言，需要依赖于不同语言的连接驱动进行多次研发，目前仅支持JAVA，对于语言统一的开发团队比较合适。
 
+## 类似方案
+
+由搜狐视频开源的一个Redis云管理平台[CacheCloud](https://github.com/sohutv/cachecloud)。(非常不错，很赞！)
+
 # Codis介绍
 [Codis](https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md)是由豌豆荚开源的一款分布式Redis集群解决方案（官方Redis Cluster没有推出之前最佳解决方案）。由以下组件组成：
 
