@@ -31,7 +31,7 @@ Squirrel通过配置不同的路由策略支持读写分离，读的负载均衡
 * **Codis FE**：集群管理界面。
 * **Storage**：配置中心，支持三种实现zookeeper、etcd、Fs，另外，可以通过Namespace来划分不同业务。
 
-架构图如下  
+【架构图如下】 
 
 ![Codis Architecture](https://github.com/CodisLabs/codis/blob/release3.2/doc/pictures/architecture.png)
 
