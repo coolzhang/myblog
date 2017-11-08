@@ -13,8 +13,8 @@ Squirrel是一个基于Redis Cluster实现的Cache解决方案，是美大上海
 ## Squirrel优势
 
 1. 支持业务Key区分  
-Squirrel配置中心通过设计了一个叫做【Category】功能来支持区分不同业务的Key。
-2. 支持灵活的路由策略  
+Squirrel配置中心通过设计了一个叫做【Category】功能来支持区分来自不同业务的Key。实际存储在Redis中的Key由3部分组成：category、template、version，例如：ordercenter.c{0}d{1}\_0，其中{0}{1}..{n}这些是占位符，由开发人员提供，可以对应数据库表中的某个字段或者是别的什么可区别的，version默认是0，通过修改版本号可以批量删除对应的Key(实际上并没有删除，只是对应业务来说Key变化了查询不到了)。【Category】功能其实有点类似于数据库中表的效果，将集群中不同用途的Key区分开来。  
+2. 支持灵活的路由策略  
 Squirrel通过配置不同的路由策略支持读写分离，读的负载均衡。
 
 ## Squirrel局限
