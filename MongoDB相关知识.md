@@ -174,10 +174,10 @@ Collection.php:54
 
 当时线上的mongo.so版本为1.4.5，需要进行升级。
 
-注：URI的连接配置中至少提供2个节点，否则会作为连接standalone处理，不具有高可用的特性。  
+注：URI的连接配置中至少提供2个节点，否则会将连接节点视为standalone处理，不具有高可用的特性。  
 
 ## 关于事务  
 
-**原子性** - MongoDB支持单个文档更新的原子性，如果单个更新设计多个文档，只能保证当前被操作文档的原子性，无法保证被更新所有文档的原子性。  
+**原子性** - 单个文档的写操作是原子操作，如果单个操作去变更多个文档，只能保证对当前文档的原子操作，无法保证对全部更新文档的原子操作。  
 
-**隔离级别** - 默认为Read Uncommited(似乎只有这一种)，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4版开始支持Real Time Order的特性readConcern配置为linearizable，可以实现多个线程并发更新同一个文档时保证串行化。
+**隔离级别** - 默认为Read Uncommited(似乎只有这一种)，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4版开始支持Real Time Order的特性，通过将读操作readConcern配置为linearizable，写操作writeConcern配置为majority，可以实现对同一个文档并发读写操作时保证请求的串行化。
