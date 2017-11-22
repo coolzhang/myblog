@@ -7,7 +7,7 @@ MongoDB是一款开源的文档型数据库，属于NoSQL范畴，但其又具�
 3. 支持丰富的类关系型的读写语句，同时还支持数据聚合操作，以及全文索引和地理位置索引；
 4. 高可用副本集功能支持自动故障切换与多节点数据冗余；
 5. 自带Sharded Cluster方案支持水平扩展，实现了自动化的动态扩容和负载均衡；
-6. 跟MySQL一样MongoDB也支持多引擎（e.g.: MMAPv1、WiredTiger、In-Memory）。
+6. 跟MySQL一样MongoDB也支持多引擎（e.g.: MMAPv1、WiredTiger、In-Memory、RocksDB）。
 
 ## MongoDB副本集安装注意点
 
@@ -30,7 +30,7 @@ MongoDB是一款开源的文档型数据库，属于NoSQL范畴，但其又具�
 
 ## 配置副本集
 
-初始化副本集，执行初始化的节点将被提升为Primary(该节点可以存在已创建的用户)，另外其他节点不能存在任何数据(包括新建的用户，即无需创建任何用户，最终会同步Primary上的已有用户)，例如：
+初始化副本集，执行初始化的节点将被提升为Primary(该节点可以存在已创建的用户)，另外其他节点不能存在任何数据(包括新建的用户，即无需创建任何用户，最终会同步Primary上的已有用户，Arbiter节点除外，需要手动创建用户)，例如：
 
 ```
 shell> mongo 127.0.0.1:27017/admin -uroot -pxx  # 连接任意一个节点
@@ -68,10 +68,11 @@ repset:PRIMARY> show users    # 查看当前库下有哪些用户
 repset:PRIMARY> db.addUser(
                   { user : "test", 
                     pwd : "12345", 
-                    roles : ["read"] 
+                    roles : [{role: "read", db: "test"}] 
                   }
-               )              # 创建用户，并赋权限，e.g: "read" - 只读用户，“readwrite” - 读写用户，“dbAdmin” - 管理员用户，“userAdmin” - 赋权限用户
-repset:PRIMARY> db.removeUser("test")                           # 删除用户
+               )              # 创建用户，并赋权限，e.g: "read" - 只读用户, "readwrite" - 读写用户, "root" - 超级权限用户,
+                                                      "backup" - 备份用户, "restore" - 恢复用户, "clusterMonitor" - 监控用户
+repset:PRIMARY> db.removeUser("test")                           # 删除用户
 repset:PRIMARY> db.changeUserPassword("username","password")    # 修改密码
 ```
 
@@ -172,3 +173,10 @@ Collection.php:54
 ```
 
 当时线上的mongo.so版本为1.4.5，需要进行升级。
+
+注：URI的连接配置中至少提供2个节点，否则会作为连接standalone处理，不具有高可用的特性。  
+
+## 关于事务  
+
+原子性 - MongoDB支持单个文档更新的原子性，如果单个更新设计多个文档，只能保证当前被操作文档的原子性，无法保证被更新所有文档的原子性。 
+隔离级别 - 默认只支持Read Uncommited，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4版开始支持Real Time Order的特性readConcern配置为linearizable，可以实现多个线程并发更新同一个文档时保证串行化。
