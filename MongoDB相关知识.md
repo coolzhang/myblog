@@ -180,4 +180,4 @@ Collection.php:54
 
 **原子性** - 单个文档的写操作是原子操作，如果单个操作去变更多个文档，只能保证对当前文档的原子操作，无法保证对全部更新文档的原子操作。  
 
-**隔离级别** - 默认为Read Uncommited，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4版开始支持Real Time Order的特性，通过将读操作readConcern配置为linearizable，写操作writeConcern配置为majority(3.4新增选项![writeConcernMajorityJournalDefault](https://docs.mongodb.com/manual/reference/replica-configuration/#rsconf.writeConcernMajorityJournalDefault), 默认为true)，可以实现对同一个文档并发读写操作时保证请求的串行化。
+**隔离级别** - 默认为Read Uncommited，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4版开始支持Real Time Order的特性，通过将读操作readConcern配置为linearizable，写操作writeConcern配置为majority(3.4新增选项[writeConcernMajorityJournalDefault](https://docs.mongodb.com/manual/reference/replica-configuration/#rsconf.writeConcernMajorityJournalDefault), 默认为true)，可以实现对同一个文档并发读写操作时保证请求的串行化。
