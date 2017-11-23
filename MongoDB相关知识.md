@@ -49,6 +49,13 @@ rs0:PRIMARY > rs.status() | rs.conf             # 查看集群状态或配�
 ***注：线上3.0版本副本集架构***
 ![ReplSet](https://docs.mongodb.com/manual/_images/replica-set-primary-with-secondary-and-arbiter.bakedsvg.svg)
 
+## 副本集知识点汇总  
+
+1. 各节点每隔2秒彼此ping对方，如果heartbeat探测超过10秒没有响应，节点会被判定为不可用，进而会发生选举操作；故障切换时间在1分钟以内完成，选举时间大概10-30秒。  
+2. [选举协议](https://docs.mongodb.com/manual/reference/replica-set-protocol-versions/)从3.2以后使用pv1，之前采用pv0，pv1的选举效率更高完成切换时间更短。  
+3. 默认读写都在Primary节点，可以通过配置readPreference来调整读操作访问的节点，提供了[5种选项](https://docs.mongodb.com/manual/core/read-preference/#read-preference-modes)。
+4. 除了Primary|Secondary|Abiter这3种角色外，还有几类特殊用途的节点，如：Priority为0的节点，隐藏节点，延时节点。
+
 ## 常用命令
 
 ### 1. 查看数据对象
@@ -180,4 +187,4 @@ Collection.php:54
 
 **原子性** - 单个文档的写操作是原子操作，如果单个操作去变更多个文档，只能保证对当前文档的原子操作，无法保证对全部更新文档的原子操作。  
 
-**隔离级别** - 默认为Read Uncommited，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4版开始支持Real Time Order的特性，通过将读操作readConcern配置为linearizable，写操作writeConcern配置为majority(3.4新增选项[writeConcernMajorityJournalDefault](https://docs.mongodb.com/manual/reference/replica-configuration/#rsconf.writeConcernMajorityJournalDefault), 默认为true)，可以实现对同一个文档并发读写操作时保证请求的串行化。
+**隔离级别** - 默认为Read Uncommited，可以通过$isolated操作符对collections加锁来控制文档的并发访问冲突。3.4开始支持Real Time Order的特性，通过将读操作readConcern配置为linearizable，写操作writeConcern配置为majority(3.4新增选项[writeConcernMajorityJournalDefault](https://docs.mongodb.com/manual/reference/replica-configuration/#rsconf.writeConcernMajorityJournalDefault)，默认为true)，可以实现对同一个文档并发读写操作时保证请求的串行化。
