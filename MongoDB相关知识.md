@@ -116,7 +116,10 @@ repset:PRIMARY> db.runCommand( { serverStatus:1 } )  # 类似show global status
 * mtools - <https://github.com/rueckstiess/mtools>
 * vc-mongo-sniffer - <https://www.vividcortex.com/resources/network-analyzer-for-mongodb>
 * ognom-toolkit - <https://github.com/fipar/ognom-toolkit>  
-* tuned-percona-mongodb - <https://github.com/Percona-Lab/tuned-percona-mongodb>  
+* tuned-percona-mongodb - <https://github.com/Percona-Lab/tuned-percona-mongodb>  
+* mongosync - <https://github.com/Qihoo360/mongosync>  
+* mongodb-consistent-backup - <https://github.com/Percona-Lab/mongodb_consistent_backup>  
+* mongobackup - <http://nosqldb.org/p/52a91d844888b88743179c5e>  
 
 ## MongoDB升降级操作
 
