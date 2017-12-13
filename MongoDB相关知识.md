@@ -121,6 +121,17 @@ repset:PRIMARY> db.runCommand( { serverStatus:1 } )  # 类似show global status
 * mongodb-consistent-backup - <https://github.com/Percona-Lab/mongodb_consistent_backup>  
 * mongobackup - <http://nosqldb.org/p/52a91d844888b88743179c5e>  
 
+### 7. 关注指标  
+
+* Oplog lag  
+* Replica state  
+* Locking and disk i/o % utilization  
+* Connections  
+* Memory usage and page fault  
+* W/R queue  
+
+See more: Monitoring for MongoDB - <https://docs.mongodb.com/manual/administration/monitoring/>  
+
 ## MongoDB升降级操作
 
 ### 1. 传统方式滚动式升级(2.4->2.6->3.0->3.2)
