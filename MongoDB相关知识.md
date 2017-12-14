@@ -118,7 +118,7 @@ repset:PRIMARY> db.runCommand( { serverStatus:1 } )  # 类似show global status
 * ognom-toolkit - <https://github.com/fipar/ognom-toolkit>  
 * tuned-percona-mongodb - <https://github.com/Percona-Lab/tuned-percona-mongodb>  
 * mongosync - <https://github.com/Qihoo360/mongosync>  
-* mongodb-consistent-backup - <https://github.com/Percona-Lab/mongodb_consistent_backup>    
+* mongodb-consistent-backup - <https://github.com/Percona-Lab/mongodb_consistent_backup
                               <https://www.percona.com/blog/2016/07/25/mongodb-consistent-backups/>     
 * mongobackup - <http://nosqldb.org/p/52a91d844888b88743179c5e>   
 
