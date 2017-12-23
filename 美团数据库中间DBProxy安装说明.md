@@ -49,7 +49,6 @@ GMODULE_CFLAGS="-pthread -I/usr/local/glib2/include/glib-2.0 -I/usr/local/glib2/
 GMODULE_LIBS="-L/usr/local/glib2/lib64 -Wl,--export-dynamic -lgmodule-2.0 -pthread -lrt" \
 GTHREAD_CFLAGS="-pthread -I/usr/local/glib2/include/glib-2.0 -I/usr/local/glib2/lib64/glib-2.0/include" \
 GTHREAD_LIBS="-L/usr/local/glib2/lib64 -lgthread-2.0 -pthread -lrt"
-  
 ```
 
 ### 配置启动服务  
@@ -90,14 +89,12 @@ shell> lld mysql-proxy
 
 ```
 shell> ldconfig -v    # 输出做了动态链接绑定的共享库信息
-
 ``` 
 
 * pkg-config - 该命令通过库提供的一个`.pc`文件获得库的各种必要信息的，包括版本信息、编译和连接需要的参数等。这些信息可以通过pkg-config提供的参数单独提取出来直接供编译器和连接器使用。相关环境变量：`PKG_CONFIG_PATH`  
 
 ```
 shell> pkg-config --cflags --libs glib-2.0   # cflags参数可以给出在编译时所需要的选项，libs参数可以给出连接时的选项  
-
 ```
 
 
