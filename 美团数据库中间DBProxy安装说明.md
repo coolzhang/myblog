@@ -18,7 +18,7 @@
 **注：**由于系统下已经安装glib(版本比较低)，glib属于基础库，被很多软件所依赖，无法升级或者重新卸载安装，故指定新目录安装满足需求的版本。
 
 
-> shell> sed -i 's/\/usr\/lib64/\/usr\/local\/glib2\/lib64/g' /usr/local/glib2/lib64/*.la  
+> shell> sed -i 's/\\/usr\\/lib64/\\/usr\\/local\\/glib2\\/lib64/g' /usr/local/glib2/lib64/*.la  
 
 **注：**解决libtool出现大量moved提示问题    
 
