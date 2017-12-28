@@ -94,9 +94,9 @@ repset:PRIMARY> rs.slaveOk()     # 默认从库不允许查询，该命令可以
 ### 4. 创建索引
 
 ```
-repset:PRIMARY> db.xx.getIndexes()                   # 查看索引
-repset:PRIMARY> db.xx.ensureIndex( { col: 1 } )      # 单列索引
-repset:PRIMARY> db.xx.ensureIndex( { col1: 1, col2: 1 } )          # 多列索引
+repset:PRIMARY> db.xx.getIndexes()                   # 查看索引
+repset:PRIMARY> db.xx.ensureIndex( { col: 1 }, { background: true })     # 单列索引，在后台创建  
+repset:PRIMARY> db.xx.ensureIndex( { col1: 1, col2: 1 } )          # 多列索引
 repset:PRIMARY> db.xx.ensureIndex( { col: 1 }, { unique: true } )  # 唯一索引
 repset:PRIMARY> db.xx.dropIndex( { col: 1 } )        # 删除指定索引
 repset:PRIMARY> db.xx.dropIndexes()                  # 删除所有索引
