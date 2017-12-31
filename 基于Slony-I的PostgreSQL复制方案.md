@@ -107,7 +107,7 @@ Slony-I Path Communications	|通过提供各节点的连接选项，例如 conni
 
 一个基于触发的实现方案，采用发布/订阅的机制，通过触发slave nodes上的triggers来实现更新的回放。
 
-![Slony Internals](https://github.com/coolzhang/myblog/blob/master/slony-i.jpg)
+![Slony Internals](https://github.com/coolzhang/myblog/blob/master/misc/slony-i.jpg)
 
 ### 相关阅读
 1. <https://momjian.us/main/writings/pgsql/replication.pdf>
