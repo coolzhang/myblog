@@ -8,7 +8,7 @@ Squirrel是一个基于Redis Cluster实现的Cache解决方案，是美大上海
 
 【架构图如下】  
 
-![Squirrel Architecture](https://github.com/coolzhang/myblog/blob/master/squirrel_arch.png)
+![Squirrel Architecture](https://github.com/coolzhang/myblog/blob/master/misc/squirrel_arch.png)
 
 ## Squirrel优势
 
