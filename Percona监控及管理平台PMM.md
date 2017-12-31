@@ -20,7 +20,7 @@
 * ***PMM Server*** - 通过Prometheus(时序数据库)进行数据的采集和存储，并调用Consul来实时同步监控主机列表，最后由Grafana来进行图形展示；另外还附带一个慢查询监控系统。
 
 ## 安装部署
-###PMM Server - 通过docker image来安装部署，步骤如下：
+### PMM Server - 通过docker image来安装部署，步骤如下：
 
 #### Step1. Create a PMM Data Container
 ```
@@ -52,19 +52,24 @@ Orchestrator						| http://192.168.100.1/orchestrator
 
 ### PMM Client
 
-####二进制包安装，如下：
+#### 二进制包安装，如下：
 ```
-#shell> wget https://www.percona.com/downloads/pmm-client/pmm-client-1.0.5/binary/redhat/6/x86_64/pmm-client-1.0.5-1.x86_64.rpm
-#shell> rpm -ivh pmm-client-1.0.5-1.x86_64.rpm
+shell> wget https://www.percona.com/downloads/pmm-client/pmm-client-1.0.5/binary/redhat/6/x86_64/pmm-client-1.0.5-1.x86_64.rpm
+shell> rpm -ivh pmm-client-1.0.5-1.x86_64.rpm
 默认安装目录：/usr/local/percona；管理工具为：/usr/sbin/pmm-admin
 
 升级PMM Client，如下：
-#shell> wget pmm-client-1.0.5
-#shell> rpm -e pmm-client-1.0.4-1.x86_64
-#shell> rpm -ivh pmm-client-1.0.5-1.x86_64.rpm
-#shell> pmm-admin config --server PMM-SERVER-IP
-#shell> pmm-admin repair [mysql | mongodb]
-#shell> pmm-admin add [mysql | mongodb]
+shell> wget pmm-client-1.0.5
+shell> rpm -e pmm-client-1.0.4-1.x86_64
+shell> rpm -ivh pmm-client-1.0.5-1.x86_64.rpm
+shell> pmm-admin config --server PMM-SERVER-IP
+shell> pmm-admin repair [mysql | mongodb]
+shell> pmm-admin add [mysql | mongodb]
+```
+或者通过percona的Yum源直接安装，如下：  
+```
+shell> yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm  
+shell> yum install -y pmm-client
 ```
 
 ##日常维护命令
