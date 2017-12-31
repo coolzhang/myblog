@@ -72,7 +72,7 @@ shell> yum install -y http://www.percona.com/downloads/percona-release/redhat/0.
 shell> yum install -y pmm-client
 ```
 
-##日常维护命令
+## 日常维护命令
 
 * 添加监控机
 `pmm-admin config --server 192.168.100.1`
