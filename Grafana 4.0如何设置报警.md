@@ -14,7 +14,7 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 **如图所示**  
 
-![Email Channel](https://github.com/coolzhang/myblog/blob/master/grafana_alert_email.png)  
+![Email Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_email.png)  
 
 **配置说明**  
 
@@ -26,7 +26,7 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 **如图所示**  
 
-![SMS Channel](https://github.com/coolzhang/myblog/blob/master/grafana_alert_webhook.png)  
+![SMS Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_webhook.png)  
 
 **配置说明**  
 
@@ -63,7 +63,7 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 如图所示  
 
-![Graph Metrics](https://github.com/coolzhang/myblog/blob/master/grafana_graph_metrics.png)  
+![Graph Metrics](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_metrics.png)  
 
 配置说明  
 
@@ -73,9 +73,9 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 如图所示  
 
-![Graph Alert Config](https://github.com/coolzhang/myblog/blob/master/grafana_graph_alert_config.png)  
+![Graph Alert Config](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_alert_config.png)  
 
-![Graph Alert Notification](https://github.com/coolzhang/myblog/blob/master/grafana_graph_notification.png)  
+![Graph Alert Notification](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_notification.png)  
   
 配置说明  
 
