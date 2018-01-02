@@ -78,14 +78,14 @@ shell> yum install -y pmm-client
 `pmm-admin config --server 192.168.100.1`
 
 * mysql监控
-`pmm-admin add mysql --user pmm --password pass4pmm --host 127.0.0.1 --port 3306`
+`pmm-admin add mysql cmug-mysqlmaster-192.168.100.2-3306 --user pmm --password pass4pmm --host 127.0.0.1 --port 3306`
 
 * CDB监控
-`pmm-admin add mysql:metrics --host 10.66.120.110 --user pmm --password pass4pmm CDB-app-mysql`
-`pmm-admin add mysql:queries --host 10.66.120.110 --user pmm --password pass4pmm CDB-app-mysql`
+`pmm-admin add mysql:metrics CDB-cmug-mysql --host 10.66.120.110 --user pmm --password pass4pmm`
+`pmm-admin add mysql:queries CDB-cmug-mysql --host 10.66.120.110 --user pmm --password pass4pmm`
 
 * mongodb监控
-`pmm-admin add mongodb --replset repset --nodetype mongod --uri mongodb://user:xxxx@127.0.0.1/admin`
+`pmm-admin add mongodb cmug-primary-192.168.100.3-27017 --uri mongodb://user:xxxx@127.0.0.1/admin`
 
 * 查看监控状态
 `pmm-admin list`
