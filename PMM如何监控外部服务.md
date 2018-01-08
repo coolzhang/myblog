@@ -75,6 +75,14 @@ shell> /usr/local/zookeeper/bin/zkServer.sh start
 ```
 **注：**[[ ]]之间的部分为向原生`zkServer.sh`脚本新增内容。  
 
+#### zookeeper监控指标  
+
+Zookeeper的监控指标可以分为3个级别：node、host、cluster；监控指标有：node count、packet count、watch count、data size、open file descriptors；生产中通常通过以下几个指标来监控服务的健康状态：disk usage、requests、active connections、total znode count。  
+
+#### kafka监控指标  
+
+监控指标：<https://signalfx.com/kafka-monitoring/>
+
 ### 相关连接  
 
 1. [How to Monitor Zookeeper](https://blog.serverdensity.com/how-to-monitor-zookeeper/)
@@ -84,3 +92,4 @@ shell> /usr/local/zookeeper/bin/zkServer.sh start
 5. [Monitoring Apache Kafka with Prometheus](https://blog.rntech.co.uk/2016/10/20/monitoring-apache-kafka-with-prometheus/)
 6. [jmx_exporter](https://github.com/prometheus/jmx_exporter)
 7. [Prometheus and JMX](http://www.whiteboardcoder.com/2017/04/prometheus-and-jmx.html)
+8. [Kafka Best Practices](https://community.hortonworks.com/articles/80813/kafka-best-practices-1.html)
