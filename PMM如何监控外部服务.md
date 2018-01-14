@@ -91,4 +91,5 @@ Zookeeper的监控指标可以分为3个级别：node、host、cluster；监控�
 4. [Monitoring Kafka with Prometheus](https://www.robustperception.io/monitoring-kafka-with-prometheus/)
 5. [Monitoring Apache Kafka with Prometheus](https://blog.rntech.co.uk/2016/10/20/monitoring-apache-kafka-with-prometheus/)
 6. [jmx_exporter](https://github.com/prometheus/jmx_exporter)
-7. [Prometheus and JMX](http://www.whiteboardcoder.com/2017/04/prometheus-and-jmx.html)
+7. [Prometheus and JMX](http://www.whiteboardcoder.com/2017/04/prometheus-and-jmx.html)  
+8. [Monitoring Kafka performance metrics](https://www.datadoghq.com/blog/monitoring-kafka-performance-metrics/)  
