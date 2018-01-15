@@ -30,7 +30,14 @@ MongoDB是一款开源的文档型数据库，属于NoSQL范畴，但其又具�
 
 ## 配置副本集
 
-初始化副本集，执行初始化的节点将被提升为Primary(该节点可以存在已创建的用户)，另外其他节点不能存在任何数据(包括新建的用户，即无需创建任何用户，最终会同步Primary上的已有用户，Arbiter节点除外，需要手动创建用户)，例如：
+在初始化副本集前，只需在Primary和Arbiter节点上创建root与monitor用户，由于Arbiter不会同步Primary上的所有更新，而且在副本集搭建好后，无法再直接创建用户，故也需提前创建，避免再以单实例启动后创建用户。(**注**：mongodb启动后默认允许在未授权情况下执行一次命令，通常用来创建一个管理用户，第二次再去执行命令时需要用该管理用户重新登录后才能执行成功。)   
+
+```
+shell> db.createUser({user: "root", pwd: "11111", roles: [ { role: "root", db: "admin"} ]})
+shell> db.createUser({user: "monitor", pwd: "22222", roles: [{role: "clusterMonitor", db: "admin"}]})
+```
+
+初始化副本集时，执行初始化的节点将被提升为Primary(该节点可以存在已创建的用户)，另外其他Secondary节点不能存在任何数据(包括新建的用户，即无需创建任何用户，最终会同步Primary上的已有用户，Arbiter节点除外，需要手动创建用户)，例如：
 
 ```
 shell> mongo 127.0.0.1:27017/admin -uroot -pxx  # 连接任意一个节点
