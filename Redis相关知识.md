@@ -47,14 +47,21 @@ Redis主从切换使用Redis 2.8/3.0中自带的sentinel实现自动切换，Sen
 
 ## Redis Cluster
 
-### Redis Cluster可能会遇到问题
+Redis Cluster使用Gossip协议实现故障检测、集群配置更新、主从切换的裁定。  
+
+Redis Cluster并不能保证数据一致性，也就是说在一些异常情况下可能会发生丢失数据：
+1. 异步复制会导致数据丢失，当故障发生时主库变更并未及时复制到从节点，从节点被提升为主库后，并没有获得所有更新数据； 
+2. 当发生网络分区故障时，恰好客户端与少数主节点在一个网络环境，在判断是否发生failover期间(node_timeout)，在少数派节点上的更新是被允许的，一旦确定节点故障，之前在少数派上的更新就会丢失，由于被裁定的新主节点并没有同步到之前的更新。   
+
+
+### Redis Cluster可能会遇到问题(未来可能不再是问题)
 
 1. 对于开发来说，目前支持cluster的语言驱动还不完善，JAVA推荐Jedis，PHP推荐Predis。
 Jedis的一些不足如下（网上收集到的，Predis没有太多信息）：
 JedisCluster 的info()等单机函数无法调用,返回(No way to dispatch this command to Redis Cluster)错误；
 JedisCluster 没有针对byte[]的API，需要自己扩展。
 2. 对于运维来说，key是随机被存储到cluster中的节点上，没有命令可以查看节点上都分布了哪些key，一旦有节点故障无法预估对于业务的影响程度。
-3. 另外，cluster中的slave对外不能提供任何请求。
+3. 另外，cluster中的slave<del>对外不能提供任何请求</del>，执行readonly命令后即可让从库可以对外读服务。
 
 ### 驱动使用方式
 
