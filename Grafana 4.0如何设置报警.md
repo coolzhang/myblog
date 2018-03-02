@@ -16,7 +16,7 @@ WEB-UI配置，如图所示：  
 
 ![Email Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_email.png)  
 
-**配置说明**  
+配置说明：  
 
 * `Type`定义报警通道类型，选择`Email`类型即可支持邮件报警。  
 * `Email addresses`下面填写需要接受报警的邮件地址，以逗号分隔。  
@@ -46,7 +46,7 @@ WEB-UI配置，如图所示：  
 
 ![SMS Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_webhook.png)  
 
-**配置说明**  
+配置说明：  
 
 * `Type`定义报警通道类型，选择`webhook`类型即可支持短信报警。  
 * `Webhook settings` - `Url`指定报警触发后调用的web服务地址，Grafana会将报警详细内容以如下JSON格式POST给Url中指定的服务，收到后只需解析出所需字段作为报警内容即可（我们选择的是title，metric，value）。
@@ -77,17 +77,17 @@ WEB-UI配置，如图所示：  
 
 ### 报警模板配置  
 
-a.由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
+**a.由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
 
 如图所示：   
 
 ![Graph Metrics](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_metrics.png)  
 
-**配置说明**  
+配置说明：  
 
 * `Legend format`定义内容对应JSON串中的`metric`字段。   
 
-b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。   
+**b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。   
 
 如图所示：  
 
@@ -95,7 +95,7 @@ b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警
 
 ![Graph Alert Notification](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_notification.png)    
 
-**配置说明**  
+配置说明：  
 
 * `Alert config` - `name`定义内容对应JSON串中的`title`字段。  
 * `Notificaton` - `Send to`配置报警通道，选择之前配置好的报警方式，即：邮件报警，还是短信报警。  
