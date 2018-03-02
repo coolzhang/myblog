@@ -4,7 +4,7 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 ### 报警通道配置  
 
-如图所示  
+如图所示：  
 
 ![Alert Notification Menu](http://docs.grafana.org/img/docs/v43/alert_notifications_menu.png)   
 
@@ -12,7 +12,7 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 #### 邮件报警  
 
-**WEB-UI配置，如图所示：**  
+WEB-UI配置，如图所示：  
 
 ![Email Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_email.png)  
 
@@ -42,7 +42,7 @@ from_name = "Grafana Alerting"
 
 #### 短信报警  
 
-**WEB-UI配置，如图所示：**  
+WEB-UI配置，如图所示：  
 
 ![SMS Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_webhook.png)  
 
@@ -79,7 +79,7 @@ from_name = "Grafana Alerting"
 
 a.由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
 
-**如图所示**  
+如图所示：   
 
 ![Graph Metrics](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_metrics.png)  
 
@@ -89,7 +89,7 @@ a.由于目前Grafana只能对具体的主机配置报警，实例名不支持�
 
 b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。   
 
-**如图所示**  
+如图所示：  
 
 ![Graph Alert Config](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_alert_config.png)  
 
