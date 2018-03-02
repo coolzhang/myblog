@@ -12,19 +12,37 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 #### 邮件报警  
 
-**如图所示**  
+**WEB-UI配置，如图所示：**  
 
 ![Email Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_email.png)  
 
-**配置说明**  
+**配置说明**  
 
 * `Type`定义报警通道类型，选择`Email`类型即可支持邮件报警。  
 * `Email addresses`下面填写需要接受报警的邮件地址，以逗号分隔。  
 * `Include image`勾选后，邮件内容会加载报警时刻的监控图。  
 
-#### 短信报警  
+**Server端配置，如下：**  
 
-**如图所示**  
+```
+# cat /usr/share/grafana/conf/defaults.ini
+
+#################################### SMTP / Emailing #####################
+[smtp]
+enabled = true
+host = smtp.cmug.com:25
+user = alert@cmug.com
+password = cmug@2018
+cert_file =
+key_file =
+skip_verify = false
+from_address = alert@cmug.com
+from_name = "Grafana Alerting"
+```
+
+#### 短信报警  
+
+**WEB-UI配置，如图所示：**  
 
 ![SMS Channel](https://github.com/coolzhang/myblog/blob/master/misc/grafana_alert_webhook.png)  
 
@@ -57,27 +75,27 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 ```
 * `Webhook settings` - `Http method`指定web请求的方法，是POST还是PUT。  
 
-### 报警模板配置  
+### 报警模板配置  
 
 由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
 
-如图所示  
+**a.如图所示**  
 
 ![Graph Metrics](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_metrics.png)  
 
-配置说明  
+**配置说明**  
 
 * `Legend format`定义内容对应JSON串中的`metric`字段。  
 
 通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。  
 
-如图所示  
+**b.如图所示  **
 
 ![Graph Alert Config](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_alert_config.png)  
 
 ![Graph Alert Notification](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_notification.png)  
-  
-配置说明  
+  
+**配置说明  **
 
 * `Alert config` - `name`定义内容对应JSON串中的`title`字段。  
 * `Notificaton` - `Send to`配置报警通道，选择之前配置好的报警方式，即：邮件报警，还是短信报警。  
