@@ -10,7 +10,7 @@ Grafana从版本4.0开始支持报警功能，可配置的报警方式有很多�
 
 进入`Notification channels`，点击`+New Channel`即可创建报警方式。
 
-#### 邮件报警  
+#### 1-邮件报警  
 
 WEB-UI配置，如图所示：  
 
@@ -40,7 +40,7 @@ from_address = alert@cmug.com
 from_name = "Grafana Alerting"
 ```
 
-#### 短信报警  
+#### 2-短信报警  
 
 WEB-UI配置，如图所示：  
 
@@ -77,7 +77,7 @@ WEB-UI配置，如图所示：  
 
 ### 报警模板配置  
 
-**a.由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
+**a.由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。**  
 
 如图所示：   
 
@@ -87,7 +87,7 @@ WEB-UI配置，如图所示：  
 
 * `Legend format`定义内容对应JSON串中的`metric`字段。   
 
-**b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。   
+**b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。**   
 
 如图所示：  
 
