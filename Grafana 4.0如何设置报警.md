@@ -22,7 +22,7 @@ WEB-UI配置，如图所示：  
 * `Email addresses`下面填写需要接受报警的邮件地址，以逗号分隔。  
 * `Include image`勾选后，邮件内容会加载报警时刻的监控图。  
 
-**Server端配置，如下：**  
+Server端配置，如下：  
 
 ```
 # cat /usr/share/grafana/conf/defaults.ini
