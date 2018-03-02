@@ -77,25 +77,25 @@ from_name = "Grafana Alerting"
 
 ### 报警模板配置  
 
-由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
+a.由于目前Grafana只能对具体的主机配置报警，实例名不支持变量，即instance="cmug-mysqlslave-10.1.8.1-3306"支持，instance="$host"不支持。  
 
-**a.如图所示**  
+**如图所示**  
 
 ![Graph Metrics](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_metrics.png)  
 
 **配置说明**  
 
-* `Legend format`定义内容对应JSON串中的`metric`字段。  
+* `Legend format`定义内容对应JSON串中的`metric`字段。   
 
-通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。  
+b.通过对`Graph`-`Alert`进行配置，来设置具体主机监控项的报警规则。   
 
-**b.如图所示  **
+**如图所示**  
 
 ![Graph Alert Config](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_alert_config.png)  
 
-![Graph Alert Notification](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_notification.png)  
-  
-**配置说明  **
+![Graph Alert Notification](https://github.com/coolzhang/myblog/blob/master/misc/grafana_graph_notification.png)    
+
+**配置说明**  
 
 * `Alert config` - `name`定义内容对应JSON串中的`title`字段。  
 * `Notificaton` - `Send to`配置报警通道，选择之前配置好的报警方式，即：邮件报警，还是短信报警。  
