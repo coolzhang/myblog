@@ -57,7 +57,7 @@ shell> wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_java
 
 ```
  # kafka启动开启JMX_PORT
-shell> KAFKA_OPTS="$KAFKA_OPTS -javaagent:/usr/local/kafka/jmx_exporter/jmx_prometheus_javaagent-0.6.jar=9999:/usr/local/kafka/jmx_exporter/kafka-0-8-2.yml" /usr/local/kafka/bin/kafka-server-start.sh -daemon /usr/local/kafka/config/server.properties
+shell> export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64/jre;KAFKA_OPTS="$KAFKA_OPTS -javaagent:/usr/local/kafka/jmx_exporter/jmx_prometheus_javaagent-0.6.jar=9999:/usr/local/kafka/jmx_exporter/kafka-0-8-2.yml" /usr/local/kafka/bin/kafka-server-start.sh -daemon /usr/local/kafka/config/server.properties
 
  # zookeeper启动开启JMX_PORT
 shell> vim /usr/local/zookeeper/bin/zkServer.sh  
@@ -71,7 +71,7 @@ shell> vim /usr/local/zookeeper/bin/zkServer.sh
 	    -cp "$CLASSPATH" $JVMFLAGS [[$JMX_OPTS]]  $ZOOMAIN "$ZOOCFG" > "$_ZOO_DAEMON_OUT" 2>&1 < /dev/null &
 	...
 
-shell> /usr/local/zookeeper/bin/zkServer.sh start
+shell> export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64/jre;/usr/local/zookeeper/bin/zkServer.sh start
 ```
 **注：**[[ ]]之间的部分为向原生`zkServer.sh`脚本新增内容。  
 
