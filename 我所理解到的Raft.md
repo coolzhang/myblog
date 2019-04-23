@@ -15,7 +15,7 @@
 
 ## 领导者选举（Leader election）
 
-Raft要求在一届任期内最多只能选项产生一位领导人，才能保证选举的安全性(Election Safety）。
+Raft要求在一届任期内最多只能选举产生一位领导人，才能保证选举的安全性(Election Safety）。
 
 ### 成员角色
 * 领导人（Leader）
