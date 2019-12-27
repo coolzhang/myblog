@@ -1,6 +1,6 @@
 ## Swap Area
 
-**`Swap`**是对实际物理内存的补充，它扩展了进程可以使用的内存空间，同时可以将开始需要但之后不会被经常访问到的页面交换到此空间以减少了内存浪费。Swap分为两类：`Swap Partition`和`Swap File`。虚拟内存(vmsize)由RAM和Swap构成。   
+`Swap`是对实际物理内存的补充，它扩展了进程可以使用的内存空间，同时可以将开始需要但之后不会被经常访问到的页面交换到此空间以减少了内存浪费。Swap分为两类：`Swap Partition`和`Swap File`。虚拟内存(vmsize)由RAM和Swap构成。   
 
 ### Swap操作命令  
 
@@ -11,7 +11,7 @@
 	
 2.查看swap  
 
-	shell> swap -s
+	shell> swapon -s
 	
 3.开关swap  
 
