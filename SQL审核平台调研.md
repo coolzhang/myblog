@@ -97,5 +97,5 @@ v. 2.3.2
 产品 | 使用范围 | 备注
 --- | --- | ---
 CloudQuery | 线下环境 Select/DDL/DML  | 无需任何审核，可直接对DB进行操作
-Yearning | 线上环境 Select/DDL/DML | 必须由业务负责人审批后，才可执行
+Yearning | 线上环境 Select/DDL/DML | 必须由业务负责人审批，DBA通过后才可执行
 
