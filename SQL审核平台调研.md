@@ -62,7 +62,7 @@ v 2.0.16
 项目 - 流程 | 为每个项目创建对应的工单审批项目，然后绑定审批用户，最后将该项目配置到【变更流程】里面 | ![sqldev1](https://github.com/coolzhang/myblog/blob/master/misc/sqldev1.png) <br> ![sqldev2](https://github.com/coolzhang/myblog/blob/master/misc/sqldev2.png)  
 
 # <a name="yearning"></a>Yearning
-![Yearning logo](https://yearning.io/images/logo_s.png)  
+![Yearning logo](https://github.com/coolzhang/Yearning/raw/master/img/logo.jpg)  
 [**Yearning**](https://yearning.io/)  
 面向中小型企业的轻量级MySQL SQL语句审核平台，提供查询审计，SQL审核，SQL回滚，自定义工作流等多种功能。  
 
