@@ -23,7 +23,8 @@ brew install --cask iterm2
 ```
 
 ### 配置iTerm2支持rz/sz
-下载脚本：[iterm2-send-zmodem.sh](https://github.com/coolzhang/myblog/blob/master/misc/iterm2-send-zmodem.sh)、[iterm2-recv-zmodem.sh](https://github.com/coolzhang/myblog/blob/master/misc/iterm2-recv-zmodem.sh)  。
+* 下载这两个脚本[iterm2-send-zmodem.sh](https://github.com/coolzhang/myblog/blob/master/misc/iterm2-send-zmodem.sh)、[iterm2-recv-zmodem.sh](https://github.com/coolzhang/myblog/blob/master/misc/iterm2-recv-zmodem.sh) 到目录/usr/local/bin目录下。
+* 配置终端支持rz/sz，如下：
 
 ```
 打开iTerm2的Preferences -> Profiles ->  Advanced -> Triggers，配置如下：
@@ -44,6 +45,7 @@ Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
 ```
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ```
+
 ### 配置omz的语法高亮、命令补全、字体风格、venv提示
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -64,5 +66,6 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 # vim ~/.oh-my-zsh/plugins/virtualenv/virtualenv.plugin.zsh
 注释掉 export VIRTUAL_ENV_DISABLE_PROMPT=1
 ```
+
 ### 效果图
 ![iterm2_with_omz](https://github.com/coolzhang/myblog/blob/master/misc/omz_screen.png)
