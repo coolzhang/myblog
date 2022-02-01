@@ -68,4 +68,4 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 ```
 
 ### 效果图
-![iterm2_with_omz](https://github.com/coolzhang/myblog/blob/master/misc/omz_screen.png)
+![iterm2_with_omz](https://github.com/coolzhang/myblog/blob/master/misc/iterm2_screen.png)
