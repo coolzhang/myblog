@@ -52,7 +52,6 @@ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | 
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 brew install svn && sudo mkdir -p /Library/Java/Extensions && sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
 brew install homebrew/cask-fonts/font-roboto-mono-for-powerline
@@ -67,6 +66,8 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # vim ~/.oh-my-zsh/plugins/virtualenv/virtualenv.plugin.zsh
 注释掉 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+echo "source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
 
 ### 效果图
