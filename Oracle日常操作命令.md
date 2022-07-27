@@ -107,7 +107,7 @@ SQL> select * from v$dataguard_status;
 
 ```
 
-### 6. DG物理机备库进行switchover  
+### 6a. DG物理备库进行switchover  
 ```
 -- 11g切换步骤
 Primary-SQL> ALTER DATABASE COMMIT TO SWITCHOVER TO PHYSICAL STANDBY WITH SESSION SHUTDOWN;  # 12c开始可以不加WITH SESSION SHUTDOWN
@@ -118,6 +118,14 @@ Standby-SQL> ALTER DATABASE COMMIT TO SWITCHOVER TO PRIMARY WITH SESSION SHUTDOW
 Primary-SQL> ALTER DATABASE SWITCHOVER TO EBSPRD_P VERIFY;  # 检查是否可以切换
 Primary-SQL> ALTER DATABASE SWITCHOVER TO EBSPRD_P;
 # 参考：https://docs.oracle.com/en/database/oracle/oracle-database/19/spmss/switchover-to-a-physical-db.html#GUID-AAD70601-D248-4309-B8DD-F461EE31A5FF
+```
+
+### 6b. DG物理备库进行failover  
+```
+-- 11g切换步骤
+Standby-SQL> ALTER DATABASE RECOVERY MANAGED STANDBY DATABASE FINISH;
+Standby-SQL> ALTER DATABASE ACTIVATE STANDBY DATABASE;
+# 参考：http://oracle-help.com/dataguard/manual-failover-in-data-guard/
 ```
 
 ### 7. 配置多个物理备库  
@@ -198,4 +206,4 @@ ORA-01152: file 1 was not restored from a sufficiently old backup
 ORA-01110: data file 1: '/opt/oracle/oradata/MYHCMDV0/system01.dbf'**  
 解决：首先需要保证主备复制是通的，rman duplicate结束后需要等待将备份期间产生的归档日志文档全部同步到备库后(不能有GAP，否则不能执行redo apply)，再执行`ALTER DATABASE RECOVER MANAGED STANDBY DATABASE USING CURRENT LOGFILE DISCONNECT FROM SESSION;` ，然后执行`ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;`，最后再打开数据库。
 7. 问题：**ORA-16047: DGID mismatch between destination setting and target database**  
-解决： 首先确认主备`log_archive_config`是否配置正确，然后在主库重新对参数`log_archive_dest_state_2`先设置为defer，再设置为enable，备库复制进程恢复正常。
+解决： 首先确认主备`log_archive_config`以及备库`db_unique_name`配置是否正确，然后在主库重新对参数`log_archive_dest_state_2`先设置为defer，再设置为enable，备库复制进程恢复正常。
