@@ -70,11 +70,11 @@ SQL> alter system switch logfile;
 
 -- 使用RMAN清理归档日志
 RMAN> list archivelog all;
-RMAN> crosscheck arvhivedlog all;
+RMAN> crosscheck arvhivelog all;
 RMAN> list expired archivelog all;
-RMAN> delete archivelog all completed until 'sysdate-1';
+RMAN> delete archivelog all completed before 'sysdate-1';
 
-RMAN> catalog start with '/opt/oracle/arch/MYHCMPRD02';  -- 如果rman之前不识别归档文件，可以将其注册到rman中
+RMAN> catalog start with '/opt/oracle/arch/MYHCMPRD02/';  -- 如果rman之前不识别归档文件，可以将其注册到rman中
 ```
 
 ### 5. 查看DG复制状态  
@@ -168,14 +168,46 @@ SQL> select status,sum(bytes)/1024/1024 from dba_undo_extents group by status;
 
 ```
 
-### 10. RMAN相关   
+### 10. 临时表空间
+```
+-- 查询用户对应的表空间信息
+SQL> select USERNAME,DEFAULT_TABLESPACE,TEMPORARY_TABLESPACE from dba_users where USERNAME='CUX_FUND';
+-- 查询临时表空间数据文件大小
+SQL>  select FILE_NAME,TABLESPACE_NAME,BYTES/1024/1024/1024 as size_GB from dba_temp_files where TABLESPACE_NAME='CUX_TEMP';
+-- 查询临时表空间使用率
+SQL> 
+SELECT D.tablespace_name,
+       SPACE "SUM_SPACE(M)",
+       blocks "SUM_BLOCKS",
+       used_space "USED_SPACE(M)",
+       Round(Nvl(used_space, 0) / SPACE * 100, 2) "USED_RATE(%)",
+       SPACE - used_space "FREE_SPACE(M)"
+ FROM (SELECT tablespace_name,
+               Round(SUM(bytes) / (1024 * 1024), 2) SPACE,
+               SUM(blocks) BLOCKS
+          FROM dba_temp_files
+         GROUP BY tablespace_name) D,
+       (SELECT tablespace,
+               Round(SUM(blocks * 8192) / (1024 * 1024), 2) USED_SPACE
+          FROM v$sort_usage
+         GROUP BY tablespace) F
+ WHERE D.tablespace_name = F.tablespace(+) 
+ AND D.tablespace_name in ('TEMP', 'CUX_TEMP');
+-- 新增临时表空间文件
+SQL> alter tablespace CUX_TEMP add tempfile '/opt/oracle/oradata/ERPFIN/cux_temp02.dbf' size 30G;
+SQL> alter database tempfile '/opt/oracle/oradata/ERPFIN/cux_temp02.dbf' autoextend on next 100m maxsize unlimited;
+
+```
+
+
+### 11. RMAN相关   
 ```
 -- 查看备份进度
 SQL> select case when opname like  '%aggregate%'  then 'total' else opname  end opname,trunc(sofar*100/totalwork,2)||'%' progress, units from  v$session_longops where opname like 'RMAN%' and totalwork>sofar;  
 
 ```
 
-### 11. AWR相关  
+### 12. AWR相关  
 ```
 -- 查看AWR配置
 SQL> select dbid,retention from dba_hist_wr_control;  
@@ -184,6 +216,17 @@ SQL> select dbid,retention from dba_hist_wr_control;
 SQL> select min(snap_id), max(snap_id) from dba_hist_snapshot;
 
 ```
+
+### 13. 查询当前进程  
+```
+-- 查看当前正在执行的SQL
+SQL> SELECT b.sid,b.serial#,b.username,sql_text,b.machine FROM v$process a, v$session b,v$sqlarea c WHERE a.addr = b.paddr and b.sql_hash_value = c.hash_value and b.username='CUX_FUND';
+
+-- 查  
+SQL> ;
+
+```
+
 
 ### 常见错误
 ```
@@ -206,4 +249,6 @@ ORA-01152: file 1 was not restored from a sufficiently old backup
 ORA-01110: data file 1: '/opt/oracle/oradata/MYHCMDV0/system01.dbf'**  
 解决：首先需要保证主备复制是通的，rman duplicate结束后需要等待将备份期间产生的归档日志文档全部同步到备库后(不能有GAP，否则不能执行redo apply)，再执行`ALTER DATABASE RECOVER MANAGED STANDBY DATABASE USING CURRENT LOGFILE DISCONNECT FROM SESSION;` ，然后执行`ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;`，最后再打开数据库。
 7. 问题：**ORA-16047: DGID mismatch between destination setting and target database**  
-解决： 首先确认主备`log_archive_config`以及备库`db_unique_name`配置是否正确，然后在主库重新对参数`log_archive_dest_state_2`先设置为defer，再设置为enable，备库复制进程恢复正常。
+解决： 首先确认主备`log_archive_config`以及备库`db_unique_name`配置是否正确，然后在主库重新对参数`log_archive_dest_state_2`先设置为defer，再设置为enable，备库复制进程恢复正常。  
+8. 问题： 业务一条统计SQL，通过客户端执行正常返回，Java程序执行时报错，**ORA-01652: unable to extend temp segment by 128 in tablespace CUX_TEMP**  
+解决：重启oracle（根据报错，尝试增加临时表空间大小，问题依然存在，从30G扩容至60G，该临时表空间使用率81%）			
